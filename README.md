@@ -1,2 +1,2 @@
-# Countgame
-Windows CLI maths game
+# Countgame - Windows CLI maths game
+Countgame 
