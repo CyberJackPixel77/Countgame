@@ -54,7 +54,7 @@ struct gamesaves {
 	int DEV_SGM_3X2;
 	int DEV_SGM_3X3;
 	int DEV_SGM_3X1;
-}; //Создание базиса
+}; //Г‘Г®Г§Г¤Г Г­ГЁГҐ ГЎГ Г§ГЁГ±Г 
 int load_progress(struct gamesaves* p_saved_records);
 int write_progress(struct gamesaves* p_saved_records, int* selected, int* subselected, int* SB);
 
