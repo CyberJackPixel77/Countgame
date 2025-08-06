@@ -119,7 +119,7 @@ int load_progress(struct gamesaves *p_saved_records) {
     return 0;
 } 
 int write_progress(struct gamesaves *p_saved_records,  int* selected, int* subselected, int* SB) {
-    //Defining the records / Определение рекордов
+    //Defining the records / ГЋГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГҐ Г°ГҐГЄГ®Г°Г¤Г®Гў
     switch (*selected) {
     case ADDITION:
         switch (*subselected) {
@@ -246,7 +246,7 @@ int write_progress(struct gamesaves *p_saved_records,  int* selected, int* subse
     if (p_saved_records->DEV_GAMEMODE_BEST > GB) GB = p_saved_records->DEV_GAMEMODE_BEST;
     p_saved_records->GAMES_BEST = GB;
 
-    //Rewriting the file / Запись в файл
+    //Rewriting the file / Г‡Г ГЇГЁГ±Гј Гў ГґГ Г©Г«
     char full_file_path[300];
     getTempFilePath(full_file_path, sizeof(full_file_path), "bsaves.txt");
 
