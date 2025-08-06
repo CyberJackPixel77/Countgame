@@ -99,5 +99,10 @@ Ver 0.8:
 ***
 # Further support and development of the game:
 Although I expected that Countgame would be my preparatory project before larger and more complex projects, this may change, it all depends on your support. If I see more support from you, I will be happy to continue development.
-# Afterword
-I already have a couple of ideas for new versions of the game, but for now I will do more interesting things for me. I will inform you about new projects soon, believe me, it will be interesting. In fact, I am very glad that I finally finished this project. It took me about 4 months, considering that I wrote the code whenever possible no more than 4-5 hours and on weekends. I am glad that I see
+
+# Afterword:
+I already have a couple of ideas for new versions of the game, but for now I will do more interesting things for me. I will inform you about new projects soon, believe me, it will be interesting. In fact, I am very glad that I finally finished this project. It took me about 4 months, considering that I wrote the code whenever possible no more than 4-5 hours and on weekends. I'm glad that I was able to overcome this project and learn many things in C, it was a valuable experience for me.
+
+-----------------------------------
+Thanks to everyone who read this short description, reported bugs in the game or just for the kind words. See you!
+
