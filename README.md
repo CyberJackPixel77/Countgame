@@ -47,10 +47,16 @@ To exit a menu, press ESC. Pressing this key in the main menu will close the pro
 # File storage     
 Countgame stores the main files in the path C:\\Games\Countgame and backups in the TEMP folder of the Windows OS.
 The game has protection against counterfeiting and entering incorrect values through save files.    
+# How to build?
+To buid this game from source you need to install GNU mingw, we're going to use gcc.    
+Copy the repository and open Command Prompt (cmd) in rep. folder, then just type 'make' or like me, who had mingw32 'mingw32-make', and you done.
 # Known issues
 1. The game stores backup files in the TEMP folder, which is why they can disappear periodically. This leads to the game not being able to start.
 2. The game is only in English, in the future it may be possible to add support for the Russian language
 3. Animations: The game may visually freeze during very fast interaction, however, this is not a problem with the C language, but with animations that do not have time to play to the end.
+# Troubleshooting
+This paragraph in an answer for upper, it'll help to troubleshoot some of these problems before new updates.
+If games said that 'Files are missing' and you already played the game, make sure to check 'saves.txt' (C:\\Games\\Countgame) and 'bsaves.txt' (Temp). If one of them dont exist, copy one of them to the directory where its none, give it a propper name, and its done. All the other stuff should be fine, I've tested it for a while and didnt noticed something paranormal. If you'll find something, consider to notice me, and I'll fix that in next updates.
 
 ***
 # Game versions before the release of the main repository
