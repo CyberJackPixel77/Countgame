@@ -42,7 +42,7 @@ void getTempFilePath(char* output, size_t outputSize, const char* fileName) {
 	snprintf(output, outputSize, "%s%s", tempDir, fileName);
 }
 int chkfls() {
-	//Checking the existance of gamefiles / Проверка файлов на наличие (оптимизация)
+	//Checking the existance of gamefiles / ГЏГ°Г®ГўГҐГ°ГЄГ  ГґГ Г©Г«Г®Гў Г­Г  Г­Г Г«ГЁГ·ГЁГҐ (Г®ГЇГІГЁГ¬ГЁГ§Г Г¶ГЁГї)
 	char full_file_path[300];
 	getTempFilePath(full_file_path, sizeof(full_file_path), "bsaves.txt");
 
@@ -63,7 +63,7 @@ int chkcheat() {
 	const char* savepath = "C:\\Games\\Countgame\\saves.txt";
 	const char* backupsaves = full_file_path;
 
-	//Checking files for coincidence / Проверка корректности записи файлов, проверка на изменения
+	//Checking files for coincidence / ГЏГ°Г®ГўГҐГ°ГЄГ  ГЄГ®Г°Г°ГҐГЄГІГ­Г®Г±ГІГЁ Г§Г ГЇГЁГ±ГЁ ГґГ Г©Г«Г®Гў, ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї
 	FILE* f1 = fopen(savepath, "rb");
 	FILE* f2 = fopen(backupsaves, "rb");
 	if (!f1 || !f2) {
@@ -100,10 +100,10 @@ int chkdir() {
 		* We have already checked existence if backup save and judging that we've got here, seems like we DO NOT have it. There is no need to check TEMP path.
 		* If there if no 'Countgame' folder, that means that it's new game. 
 		  / 
-		  Мы уже проверяли наличие файла бэкапа и учитывая что мы попали сюда, 
-		  можно сделать вывод что его нет.Папку темп проверять нет смысла на наличие, она есть. 
-		  Значит если нет папки Countgame, то это новая игра. 
-		  Создаём все папки и все необходимые файлы.
+		  ГЊГ» ГіГ¦ГҐ ГЇГ°Г®ГўГҐГ°ГїГ«ГЁ Г­Г Г«ГЁГ·ГЁГҐ ГґГ Г©Г«Г  ГЎГЅГЄГ ГЇГ  ГЁ ГіГ·ГЁГІГ»ГўГ Гї Г·ГІГ® Г¬Г» ГЇГ®ГЇГ Г«ГЁ Г±ГѕГ¤Г , 
+		  Г¬Г®Г¦Г­Г® Г±Г¤ГҐГ«Г ГІГј ГўГ»ГўГ®Г¤ Г·ГІГ® ГҐГЈГ® Г­ГҐГІ.ГЏГ ГЇГЄГі ГІГҐГ¬ГЇ ГЇГ°Г®ГўГҐГ°ГїГІГј Г­ГҐГІ Г±Г¬Г»Г±Г«Г  Г­Г  Г­Г Г«ГЁГ·ГЁГҐ, Г®Г­Г  ГҐГ±ГІГј. 
+		  Г‡Г­Г Г·ГЁГІ ГҐГ±Г«ГЁ Г­ГҐГІ ГЇГ ГЇГЄГЁ Countgame, ГІГ® ГЅГІГ® Г­Г®ГўГ Гї ГЁГЈГ°Г . 
+		  Г‘Г®Г§Г¤Г ВёГ¬ ГўГ±ГҐ ГЇГ ГЇГЄГЁ ГЁ ГўГ±ГҐ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г»ГҐ ГґГ Г©Г«Г».
 		*/
 		if (_mkdir(fullpath) != 0) {
 			printf("FAILED: Failed to create folder 'C:\\Games\\Countgame...");
@@ -176,15 +176,15 @@ int chkdir() {
 }
 int pre_game_check() {
 	if (chkfls() != 0) {
-		//No files / Файлов нет
+		//No files / Г”Г Г©Г«Г®Гў Г­ГҐГІ
 		if (chkdir() != 0) {
 			return NO_SUCH_FILE;
 		}
 	}
 	if (skipchkcheat == 0) {
-		//If NOT new game, then check coincidence / Если не новая игра, то проверяем совпадение
+		//If NOT new game, then check coincidence / Г…Г±Г«ГЁ Г­ГҐ Г­Г®ГўГ Гї ГЁГЈГ°Г , ГІГ® ГЇГ°Г®ГўГҐГ°ГїГҐГ¬ Г±Г®ГўГЇГ Г¤ГҐГ­ГЁГҐ
 		if (chkcheat() != 0) {
-			//If not the same - block / Если файлы не совпадают, блок.
+			//If not the same - block / Г…Г±Г«ГЁ ГґГ Г©Г«Г» Г­ГҐ Г±Г®ГўГЇГ Г¤Г ГѕГІ, ГЎГ«Г®ГЄ.
 			logger(1, "Files are currupted, or cheat detected.");
 			printf("CHKCHT: Game Files currupted. Touch some grass, cheater.\nGame will not start...");
 			return FILES_CORRUPTED;
