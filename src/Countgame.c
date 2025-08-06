@@ -13,10 +13,10 @@
 *  This code might be not perfect, cuz its my first ever C project. I'll try my best to improve my C-skills in coding)
 *
 */
-#define MAXLEN 10 //Length of custom_scanf line / Длина поля ввода в custom_scanf
-#define ESC_BUTTON 27 //ASCII code of ESC button / Код клавиши ESC
-#define BACKSPACE_BUTTON 8 //ASCII code of BACKSPACE button / Код клавиши удаления символа
-#define ENTER_BUTTON 13 //ASCII code of ENTER button / Код клавиши ENTER
+#define MAXLEN 10 //Length of custom_scanf line / Г„Г«ГЁГ­Г  ГЇГ®Г«Гї ГўГўГ®Г¤Г  Гў custom_scanf
+#define ESC_BUTTON 27 //ASCII code of ESC button / ГЉГ®Г¤ ГЄГ«Г ГўГЁГёГЁ ESC
+#define BACKSPACE_BUTTON 8 //ASCII code of BACKSPACE button / ГЉГ®Г¤ ГЄГ«Г ГўГЁГёГЁ ГіГ¤Г Г«ГҐГ­ГЁГї Г±ГЁГ¬ГўГ®Г«Г 
+#define ENTER_BUTTON 13 //ASCII code of ENTER button / ГЉГ®Г¤ ГЄГ«Г ГўГЁГёГЁ ENTER
 #define ARROW_UP 72
 #define ARROW_DOWN 80
 #define ARROW_LEFT 75
@@ -36,7 +36,7 @@ struct Example examples[MAX_ACTIVE_EXAMPLES];
 
 
 
-//Animation / Анимация ---------------------------------------------
+//Animation / ГЂГ­ГЁГ¬Г Г¶ГЁГї ---------------------------------------------
 void gotoxy(int x, int y) {
 	COORD coord = { (SHORT)x, (SHORT)y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
@@ -156,16 +156,16 @@ void handlepressenter(int y) {
 
 
 
-//Main and submenu / Главное и подменю ------------------------------------
+//Main and submenu / ГѓГ«Г ГўГ­Г®ГҐ ГЁ ГЇГ®Г¤Г¬ГҐГ­Гѕ ------------------------------------
 //MMU - Main Menu UPPER
 
-//Global variables / Глобальные переменные 
+//Global variables / ГѓГ«Г®ГЎГ Г«ГјГ­Г»ГҐ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ 
 int selected = 0;
 int subselected = 0;
 int special_code = 0; // 1 - Gamemode selected, 0 - Gamemode default
 int answer;
 
-//Pre-Game functions / До игровые функции
+//Pre-Game functions / Г„Г® ГЁГЈГ°Г®ГўГ»ГҐ ГґГіГ­ГЄГ¶ГЁГЁ
 void checklang() {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     while (1) {
@@ -202,7 +202,7 @@ void checklang() {
 }
 
 
-//Drawing-Functions / Функции отрисовки
+//Drawing-Functions / Г”ГіГ­ГЄГ¶ГЁГЁ Г®ГІГ°ГЁГ±Г®ГўГЄГЁ
 void printmainmenu() {
     printf("/======================================================================================================================\\\n");
     printf("|                                                                                                                      |\n");
@@ -426,7 +426,7 @@ void printexitmenu() {
 }
 
 
-//Main Menu Functions / Функции работы меню
+//Main Menu Functions / Г”ГіГ­ГЄГ¶ГЁГЁ Г°Г ГЎГ®ГІГ» Г¬ГҐГ­Гѕ
 void highlightmenu(int selected) {
     if (selected == 0) {
         gotoxy(20, 4);
@@ -514,7 +514,7 @@ void selectsubmenu(int selected, int subselected) {
     }
 }
 int mmugetcoursor(int x, int y) {
-    //Hide cursor / Скрываем курсор
+    //Hide cursor / Г‘ГЄГ°Г»ГўГ ГҐГ¬ ГЄГіГ°Г±Г®Г°
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     if (hConsole == INVALID_HANDLE_VALUE) {
         printf("Error: Cannot get console handle\n");
@@ -531,15 +531,15 @@ int mmugetcoursor(int x, int y) {
     if (insubmenu == 0) {
         highlightmenu(selected);
     }
-    //Loop of flashing + enter / Цикл мигания + считывания
+    //Loop of flashing + enter / Г–ГЁГЄГ« Г¬ГЁГЈГ Г­ГЁГї + Г±Г·ГЁГІГ»ГўГ Г­ГЁГї
     while (1) {
-        //Getting keys / Считывания клавиш и действия
+        //Getting keys / Г‘Г·ГЁГІГ»ГўГ Г­ГЁГї ГЄГ«Г ГўГЁГё ГЁ Г¤ГҐГ©Г±ГІГўГЁГї
         if (_kbhit()) {
             int key = _getch();
-            if (key == 0 || key == 224) { //Спецклавиши
+            if (key == 0 || key == 224) { //Г‘ГЇГҐГ¶ГЄГ«Г ГўГЁГёГЁ
                 key = _getch();
                 switch (key) {
-                case 72: // Стрелка вверx
+                case 72: // Г‘ГІГ°ГҐГ«ГЄГ  ГўГўГҐГ°x
                     if (insubmenu == 0) {
                         if (selected == 1) selected = 0;
                         else if (selected == 3) selected = 1;
@@ -554,7 +554,7 @@ int mmugetcoursor(int x, int y) {
                         }
                     }
                     break;
-                case 80: // Стрелка вниз
+                case 80: // Г‘ГІГ°ГҐГ«ГЄГ  ГўГ­ГЁГ§
                     if (insubmenu == 0) {
                         if (selected == 0) selected = 2;
                         else if (selected == 1) selected = 3;
@@ -563,27 +563,27 @@ int mmugetcoursor(int x, int y) {
                         //insubmenu == 1
                         if (subselected < 3) {
                             subselected++;
-                            system("cls"); // Перерисовываем
-                            printmainmenu(); // Фон меню
+                            system("cls"); // ГЏГҐГ°ГҐГ°ГЁГ±Г®ГўГ»ГўГ ГҐГ¬
+                            printmainmenu(); // Г”Г®Г­ Г¬ГҐГ­Гѕ
                             selectsubmenu(selected, subselected);
                         }
                     }
                     break;
-                case 75: // Стрелка влево
+                case 75: // Г‘ГІГ°ГҐГ«ГЄГ  ГўГ«ГҐГўГ®
                     if (selected == 1 && insubmenu == 0) selected = 0;
                     else if (selected == 3 && insubmenu == 0) selected = 2;
                     break;
-                case 77: // Стрелка вправо
+                case 77: // Г‘ГІГ°ГҐГ«ГЄГ  ГўГЇГ°Г ГўГ®
                     if (selected == 0 && insubmenu == 0) selected = 1;
                     else if (selected == 2 && insubmenu == 0) selected = 3;
-                    // Логика для перехода вправо
+                    // Г‹Г®ГЈГЁГЄГ  Г¤Г«Гї ГЇГҐГ°ГҐГµГ®Г¤Г  ГўГЇГ°Г ГўГ®
                     break;
                 }
                 if (insubmenu == 0) {
                     highlightmenu(selected);
                 }
             }
-            else { //Basic keys / Стандарт клавиши
+            else { //Basic keys / Г‘ГІГ Г­Г¤Г Г°ГІ ГЄГ«Г ГўГЁГёГЁ
                 switch (key) {
                 case ENTER_BUTTON:
                     if (insubmenu == 0) {
@@ -616,7 +616,7 @@ int mmugetcoursor(int x, int y) {
                         break;
                     }
                     else return -1;
-                case 'h': // H (Ignoring register / игнорируем регистр)
+                case 'h': // H (Ignoring register / ГЁГЈГ­Г®Г°ГЁГ°ГіГҐГ¬ Г°ГҐГЈГЁГ±ГІГ°)
                 case 'H':
                     if (insubmenu == 0 || insubmenu == 1) {
                         cursorInfo.bVisible = FALSE;
@@ -627,7 +627,7 @@ int mmugetcoursor(int x, int y) {
                         insubmenu = 2;
                     }
                     break;
-                    // Show 'Help' menu / Показать помощь
+                    // Show 'Help' menu / ГЏГ®ГЄГ Г§Г ГІГј ГЇГ®Г¬Г®Г№Гј
                 case 'r':
                 case 'R':
 
@@ -648,7 +648,7 @@ int mmugetcoursor(int x, int y) {
 }
 
 
-//Animation Functions of 'maingame' / Функции Анимации главной игры
+//Animation Functions of 'maingame' / Г”ГіГ­ГЄГ¶ГЁГЁ ГЂГ­ГЁГ¬Г Г¶ГЁГЁ ГЈГ«Г ГўГ­Г®Г© ГЁГЈГ°Г»
 void animatemaingame() {
     int base_y = Y_COORD_ANIMATE; 
     int base_x = X_COORD_ANIMATE;
@@ -665,12 +665,12 @@ void animatemaingame() {
     }
 }
 void add_new_examples(const char* line) {
-    // Move all exmpls up / Сдвигаем все примеры вверх
+    // Move all exmpls up / Г‘Г¤ГўГЁГЈГ ГҐГ¬ ГўГ±ГҐ ГЇГ°ГЁГ¬ГҐГ°Г» ГўГўГҐГ°Гµ
     for (int i = MAX_ACTIVE_EXAMPLES - 1; i > 0; i--) {
         examples[i] = examples[i - 1];
     }
 
-    // Write down new exmpl to lower line / Записываем новый пример в самую нижнюю строку
+    // Write down new exmpl to lower line / Г‡Г ГЇГЁГ±Г»ГўГ ГҐГ¬ Г­Г®ГўГ»Г© ГЇГ°ГЁГ¬ГҐГ° Гў Г±Г Г¬ГіГѕ Г­ГЁГ¦Г­ГѕГѕ Г±ГІГ°Г®ГЄГі
     strncpy(examples[0].text, line, sizeof(examples[0].text) - 1);
     examples[0].text[sizeof(examples[0].text) - 1] = '\0';
     examples[0].active = 1;
@@ -686,15 +686,15 @@ void keep_cursor() {
     gotoxy(X_COORD_ANIMATE + strlen(examples[0].text), y_cursor);
 }
 
-//Maingame functions / Функции создания игры
+//Maingame functions / Г”ГіГ­ГЄГ¶ГЁГЁ Г±Г®Г§Г¤Г Г­ГЁГї ГЁГЈГ°Г»
 int custom_scanf(float* out) {
     /*RUS:
-    Кастомная реализация scanf для однопотока (scanf блокирует ввод, а мне нужно в этот момент проверить не нажат ли ESC.
-     Более того, эта функция в разы более безопасна чем scanf, да и в какой то степени проще. Было интересно её написать)
+    ГЉГ Г±ГІГ®Г¬Г­Г Гї Г°ГҐГ Г«ГЁГ§Г Г¶ГЁГї scanf Г¤Г«Гї Г®Г¤Г­Г®ГЇГ®ГІГ®ГЄГ  (scanf ГЎГ«Г®ГЄГЁГ°ГіГҐГІ ГўГўГ®Г¤, Г  Г¬Г­ГҐ Г­ГіГ¦Г­Г® Гў ГЅГІГ®ГІ Г¬Г®Г¬ГҐГ­ГІ ГЇГ°Г®ГўГҐГ°ГЁГІГј Г­ГҐ Г­Г Г¦Г ГІ Г«ГЁ ESC.
+     ГЃГ®Г«ГҐГҐ ГІГ®ГЈГ®, ГЅГІГ  ГґГіГ­ГЄГ¶ГЁГї Гў Г°Г Г§Г» ГЎГ®Г«ГҐГҐ ГЎГҐГ§Г®ГЇГ Г±Г­Г  Г·ГҐГ¬ scanf, Г¤Г  ГЁ Гў ГЄГ ГЄГ®Г© ГІГ® Г±ГІГҐГЇГҐГ­ГЁ ГЇГ°Г®Г№ГҐ. ГЃГ»Г«Г® ГЁГ­ГІГҐГ°ГҐГ±Г­Г® ГҐВё Г­Г ГЇГЁГ±Г ГІГј)
      RETURN CODES: 
-     ESC_BUTTON - Нажатие ESC
-     1 - Серьёзная ошибка
-     0 - Безошибочное завершение кода
+     ESC_BUTTON - ГЌГ Г¦Г ГІГЁГҐ ESC
+     1 - Г‘ГҐГ°ГјВёГ§Г­Г Гї Г®ГёГЁГЎГЄГ 
+     0 - ГЃГҐГ§Г®ГёГЁГЎГ®Г·Г­Г®ГҐ Г§Г ГўГҐГ°ГёГҐГ­ГЁГҐ ГЄГ®Г¤Г 
      ENG:
      Custom realization of scanf for singlethread (scanf blocks the thread, until user dont enter a number. I need to make sure that user could use ESC-menu,
      furthermore, this function way more save then basic realization of 'scanf' func, and easier at all. It was exciting to write it)
@@ -706,20 +706,20 @@ int custom_scanf(float* out) {
     char custom_scanf_buffer[MAXLEN] = { 0 };
     int index = 0;
     int hasdot = 0;
-    int FE = 0; //Force Exit - makes it impossible to press ENTER button when buffer is full (safety measure) / Forse Exit, не даёт нажать пробел после него
+    int FE = 0; //Force Exit - makes it impossible to press ENTER button when buffer is full (safety measure) / Forse Exit, Г­ГҐ Г¤Г ВёГІ Г­Г Г¦Г ГІГј ГЇГ°Г®ГЎГҐГ« ГЇГ®Г±Г«ГҐ Г­ГҐГЈГ®
     if (out == NULL) return 1;
     while (1) {
         if (_kbhit()) {
             char c = _getch();
             if (c == ESC_BUTTON) {
-                //Logic for completing the enter phase, buffer flush and exit from func / Логика завершения ввода, очистки буфера и выхода
+                //Logic for completing the enter phase, buffer flush and exit from func / Г‹Г®ГЈГЁГЄГ  Г§Г ГўГҐГ°ГёГҐГ­ГЁГї ГўГўГ®Г¤Г , Г®Г·ГЁГ±ГІГЄГЁ ГЎГіГґГҐГ°Г  ГЁ ГўГ»ГµГ®Г¤Г 
                 memset(custom_scanf_buffer, 0, MAXLEN);
                 hasdot = 0;
                 FE = 0;
                 return ESC_BUTTON;
             }
             else if (c == BACKSPACE_BUTTON && index > 0) {
-                //Logic for deleting a symbol / Логика работы при удалении символа
+                //Logic for deleting a symbol / Г‹Г®ГЈГЁГЄГ  Г°Г ГЎГ®ГІГ» ГЇГ°ГЁ ГіГ¤Г Г«ГҐГ­ГЁГЁ Г±ГЁГ¬ГўГ®Г«Г 
                 if ((custom_scanf_buffer[index - 1] == '.') && hasdot > 0) hasdot--;
                 index--;
                 custom_scanf_buffer[index] = '\0';
@@ -768,7 +768,7 @@ int custom_scanf(float* out) {
 }
 int handleanswers(float* Pcorrect) {
 
-    //Needed varbls for func / Необходимые функции переменные
+    //Needed varbls for func / ГЌГҐГ®ГЎГµГ®Г¤ГЁГ¬Г»ГҐ ГґГіГ­ГЄГ¶ГЁГЁ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ
     float answer;
     float correct = *Pcorrect;
     int option = custom_scanf(&answer);
@@ -800,32 +800,32 @@ int handleanswers(float* Pcorrect) {
 int writerecords(int* result, int* SB, int* softSB, int* last_err) {
     if (*result == 0) {
         if (*last_err == 0) {
-            (*SB)++;       //Continue clear strike /  Продолжаем чистую серию
+            (*SB)++;       //Continue clear strike /  ГЏГ°Г®Г¤Г®Г«Г¦Г ГҐГ¬ Г·ГЁГ±ГІГіГѕ Г±ГҐГ°ГЁГѕ
         }
         else {
-            (*softSB)++;   //Counting 'after-error' strike / Считаем "послеошибочную" серию
+            (*softSB)++;   //Counting 'after-error' strike / Г‘Г·ГЁГІГ ГҐГ¬ "ГЇГ®Г±Г«ГҐГ®ГёГЁГЎГ®Г·Г­ГіГѕ" Г±ГҐГ°ГЁГѕ
             if (*softSB > *SB) {
                 *SB = *softSB;
             }
         }
-        *last_err = 0; // Flushing the err flag / Сброс флага ошибки
+        *last_err = 0; // Flushing the err flag / Г‘ГЎГ°Г®Г± ГґГ«Г ГЈГ  Г®ГёГЁГЎГЄГЁ
     }
     else if (*result == 1) {
-        *softSB = 0;      // Ошибка — сброс серии
+        *softSB = 0;      // ГЋГёГЁГЎГЄГ  В— Г±ГЎГ°Г®Г± Г±ГҐГ°ГЁГЁ
         *last_err = 1;
     }
 }
 int checknumber(const int* out_N1) {
-    //Функция по проверке числа
-    //Проверяем первое число для подбора второго
+    //Г”ГіГ­ГЄГ¶ГЁГї ГЇГ® ГЇГ°Г®ГўГҐГ°ГЄГҐ Г·ГЁГ±Г«Г 
+    //ГЏГ°Г®ГўГҐГ°ГїГҐГ¬ ГЇГҐГ°ГўГ®ГҐ Г·ГЁГ±Г«Г® Г¤Г«Гї ГЇГ®Г¤ГЎГ®Г°Г  ГўГІГ®Г°Г®ГЈГ®
     int N1 = *out_N1;
-    int N2 = -100000; //ERR value / ERR значение
+    int N2 = -100000; //ERR value / ERR Г§Г­Г Г·ГҐГ­ГЁГҐ
     int is_simple = 1;
     for (int i = 2; i <= 10; i++) {
          if (N1 % i == 0) {
              is_simple = 0;
              break;
-         } //If has devisors -> 0, if simple -> 0 / Если число имеет делители - 0, если простое - 1.
+         } //If has devisors -> 0, if simple -> 0 / Г…Г±Г«ГЁ Г·ГЁГ±Г«Г® ГЁГ¬ГҐГҐГІ Г¤ГҐГ«ГЁГІГҐГ«ГЁ - 0, ГҐГ±Г«ГЁ ГЇГ°Г®Г±ГІГ®ГҐ - 1.
     }
     if (is_simple == 1) {
         if (subselected == 0 || subselected == 3) {
@@ -876,8 +876,8 @@ int checknumber(const int* out_N1) {
                 }
             }
             if (NN.even == 1) {
-                //Devisors for even numbers / Делители для чётных чисел
-                //Idea for next version of Countgame: make devisors choices based on 'selected' and 'subselected' / Сделать выбор в зависимости от режима, 2-1/3-2/3-3/3-1
+                //Devisors for even numbers / Г„ГҐГ«ГЁГІГҐГ«ГЁ Г¤Г«Гї Г·ВёГІГ­Г»Гµ Г·ГЁГ±ГҐГ«
+                //Idea for next version of Countgame: make devisors choices based on 'selected' and 'subselected' / Г‘Г¤ГҐГ«Г ГІГј ГўГ»ГЎГ®Г° Гў Г§Г ГўГЁГ±ГЁГ¬Г®Г±ГІГЁ Г®ГІ Г°ГҐГ¦ГЁГ¬Г , 2-1/3-2/3-3/3-1
                 if (subselected == 0 || subselected == 3) {
                     int prand = rand() % 5;
                     switch (prand) {
@@ -910,7 +910,7 @@ int checknumber(const int* out_N1) {
                 }
             }
             else if (NN.three == 1) {
-                //Devisors for 3 / Делители для тройки
+                //Devisors for 3 / Г„ГҐГ«ГЁГІГҐГ«ГЁ Г¤Г«Гї ГІГ°Г®Г©ГЄГЁ
                 //2 - 1 / 3 - 2 / 3 - 3 / 3 - 1
                 if (subselected == 0 || subselected == 3) {
                     int prand = rand() % 3;
@@ -938,7 +938,7 @@ int checknumber(const int* out_N1) {
                 }
             }
             else if (NN.four == 1) {
-                //Devisors for 4 / Делители четвёрки
+                //Devisors for 4 / Г„ГҐГ«ГЁГІГҐГ«ГЁ Г·ГҐГІГўВёГ°ГЄГЁ
                 //2 - 1 / 3 - 2 / 3 - 3 / 3 - 1
                 if (subselected == 0 || subselected == 3) {
                     int prand = rand() % 5;
@@ -969,7 +969,7 @@ int checknumber(const int* out_N1) {
                 }
             }
             else if (NN.five == 1) {
-                //Devisors for 5 /Делители пятёрки
+                //Devisors for 5 /Г„ГҐГ«ГЁГІГҐГ«ГЁ ГЇГїГІВёГ°ГЄГЁ
                 //2 - 1 / 3 - 2 / 3 - 3 / 3 - 1
                 if (subselected == 0 || subselected == 3) {
                     int prand = rand() % 2;
@@ -997,7 +997,7 @@ int checknumber(const int* out_N1) {
                 }
             }
             else if (NN.six == 1) {
-                //Devisors for 6 / Делители шестёрки
+                //Devisors for 6 / Г„ГҐГ«ГЁГІГҐГ«ГЁ ГёГҐГ±ГІВёГ°ГЄГЁ
                 //2 - 1 / 3 - 2 / 3 - 3 / 3 - 1
                 if (subselected == 0 || subselected == 3) {
                     int prand = rand() % 3;
@@ -1027,7 +1027,7 @@ int checknumber(const int* out_N1) {
                 }
             }
             else if (NN.seven == 1) {
-                //Devisors for 7 / делители семёрки
+                //Devisors for 7 / Г¤ГҐГ«ГЁГІГҐГ«ГЁ Г±ГҐГ¬ВёГ°ГЄГЁ
                 //Simple number
                 //2 - 1 / 3 - 2 / 3 - 3 / 3 - 1
                 if (subselected == 0 || subselected == 3) {
@@ -1060,7 +1060,7 @@ int checknumber(const int* out_N1) {
                 }
             }
             else if (NN.eight == 1) {
-                //Devisors for 8 / делители восьмёрки
+                //Devisors for 8 / Г¤ГҐГ«ГЁГІГҐГ«ГЁ ГўГ®Г±ГјГ¬ВёГ°ГЄГЁ
                 //2 - 1 / 3 - 2 / 3 - 3 / 3 - 1
                 if (subselected == 0 || subselected == 3) {
                     int prand = rand() % 5;
@@ -1093,7 +1093,7 @@ int checknumber(const int* out_N1) {
                 }
             }
             else if (NN.nine == 1) {
-                //Devisors for 9 / делители девятки
+                //Devisors for 9 / Г¤ГҐГ«ГЁГІГҐГ«ГЁ Г¤ГҐГўГїГІГЄГЁ
                 //2 - 1 / 3 - 2 / 3 - 3 / 3 - 1
                 if (subselected == 0 || subselected == 3) {
                     int prand = rand() % 4;
@@ -1124,7 +1124,7 @@ int checknumber(const int* out_N1) {
                 }
             }
             else if (NN.ten == 1) {
-                //Devisors for 10 / делители десятки
+                //Devisors for 10 / Г¤ГҐГ«ГЁГІГҐГ«ГЁ Г¤ГҐГ±ГїГІГЄГЁ
                 //2 - 1 / 3 - 2 / 3 - 3 / 3 - 1
                 if (subselected == 0 || subselected == 3) {
                     int prand = rand() % 3;
@@ -1164,13 +1164,13 @@ void getnumber(int* out_N1, int* out_N2) {
         //2 - 1
         int range1 = rand() % 2;
         if (range1 == 0) {
-            N1 = (rand() % (90)) - 99; // From -99 to -10 / от -99 до -10
+            N1 = (rand() % (90)) - 99; // From -99 to -10 / Г®ГІ -99 Г¤Г® -10
         }
         else {
-            N1 = (rand() % (90)) + 10; // от 10 до 99
+            N1 = (rand() % (90)) + 10; // Г®ГІ 10 Г¤Г® 99
         }
         if (selected != 3) {
-            N2 = 1 + rand() % (9 - 1 + 1);// от -9 до 9
+            N2 = 1 + rand() % (9 - 1 + 1);// Г®ГІ -9 Г¤Г® 9
             int rd = rand() % 2;
             if (rd == 0) {
                 N2 = -N2;
@@ -1236,8 +1236,8 @@ void getnumber(int* out_N1, int* out_N2) {
 int maingame() {
         int stop = 0;
         int SB = 0;
-        int softSB = 0; //Best after ERR / Текущий рекорд после ошибки
-        int last_err = 0; //'Last-ERR' flag / Флаг указывающий что последний пример - ошибка.
+        int softSB = 0; //Best after ERR / Г’ГҐГЄГіГ№ГЁГ© Г°ГҐГЄГ®Г°Г¤ ГЇГ®Г±Г«ГҐ Г®ГёГЁГЎГЄГЁ
+        int last_err = 0; //'Last-ERR' flag / Г”Г«Г ГЈ ГіГЄГ Г§Г»ГўГ ГѕГ№ГЁГ© Г·ГІГ® ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ© ГЇГ°ГЁГ¬ГҐГ° - Г®ГёГЁГЎГЄГ .
         struct gamesaves SAVED_RECORDS;
         int load_status = load_progress(&SAVED_RECORDS);
         if (load_status == -1) {
@@ -1252,36 +1252,36 @@ int maingame() {
         while (stop != 1) {
             /*Special_code - become 0 if user didn't selected a gamemode in MMUgetcoursor / 
             * stop - indicates a condition for ESC menu
-              Special_code - Становиться 0 если не был выбран режим игры в главном меню (MMUGetCoursor)
-              stop - флаг попадания в меню выхода
+              Special_code - Г‘ГІГ Г­Г®ГўГЁГІГјГ±Гї 0 ГҐГ±Г«ГЁ Г­ГҐ ГЎГ»Г« ГўГ»ГЎГ°Г Г­ Г°ГҐГ¦ГЁГ¬ ГЁГЈГ°Г» Гў ГЈГ«Г ГўГ­Г®Г¬ Г¬ГҐГ­Гѕ (MMUGetCoursor)
+              stop - ГґГ«Г ГЈ ГЇГ®ГЇГ Г¤Г Г­ГЁГї Гў Г¬ГҐГ­Гѕ ГўГ»ГµГ®Г¤Г 
             */
             if (special_code == 1) {
                 int N1, N2;
                 switch (selected) {
                 case ADDITION: {
-                    char new_example[MAX_LINE_LENGTH] = { 0 }; //Initializing buffer / Инициализация буфера
+                    char new_example[MAX_LINE_LENGTH] = { 0 }; //Initializing buffer / Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЎГіГґГҐГ°Г 
 
                     system("cls");
                     gotoxy(0, 0);
-                    showgameback(SB, &selected, &subselected, &SAVED_RECORDS); //Making backscreen visible / Показываем задний фон
+                    showgameback(SB, &selected, &subselected, &SAVED_RECORDS); //Making backscreen visible / ГЏГ®ГЄГ Г§Г»ГўГ ГҐГ¬ Г§Г Г¤Г­ГЁГ© ГґГ®Г­
                     getnumber(&N1, &N2); //Getting numbers for math expression
                     if (N2 < 0) { snprintf(new_example, sizeof(new_example), "%d + (%d) = ", N1, N2); }
                     else snprintf(new_example, sizeof(new_example), "%d + %d = ", N1, N2);
 
-                    add_new_examples(new_example); //Animation stuff / Функции анимации
+                    add_new_examples(new_example); //Animation stuff / Г”ГіГ­ГЄГ¶ГЁГЁ Г Г­ГЁГ¬Г Г¶ГЁГЁ
                     animatemaingame();
                     keep_cursor();
 
                     float correct = N1 + N2;
-                    int result = handleanswers(&correct); //Checking user answer / Проверка ответа пользователя
+                    int result = handleanswers(&correct); //Checking user answer / ГЏГ°Г®ГўГҐГ°ГЄГ  Г®ГІГўГҐГІГ  ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гї
 
-                    char result_text[MAX_LINE_LENGTH]; //New buffer for user answer / Буфер для хранения значения что ввёл пользователь
+                    char result_text[MAX_LINE_LENGTH]; //New buffer for user answer / ГЃГіГґГҐГ° Г¤Г«Гї ГµГ°Г Г­ГҐГ­ГЁГї Г§Г­Г Г·ГҐГ­ГЁГї Г·ГІГ® ГўГўВёГ« ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гј
                     snprintf(result_text, sizeof(result_text), "%s%d", examples[0].text, (int)correct);
                     strncpy(examples[0].text, result_text, sizeof(examples[0].text) - 1);
                     examples[0].text[sizeof(examples[0].text) - 1] = '\0';
 
-                    writerecords(&result, &SB, &softSB, &last_err); //Updating personal bests on backscreen / Обновление рекордов на фоне
-                    write_progress(&SAVED_RECORDS, &selected, &subselected, &SB); //Saving personal best to gamesaves file / Сохраняем рекорды пользователя в файл
+                    writerecords(&result, &SB, &softSB, &last_err); //Updating personal bests on backscreen / ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ Г°ГҐГЄГ®Г°Г¤Г®Гў Г­Г  ГґГ®Г­ГҐ
+                    write_progress(&SAVED_RECORDS, &selected, &subselected, &SB); //Saving personal best to gamesaves file / Г‘Г®ГµГ°Г Г­ГїГҐГ¬ Г°ГҐГЄГ®Г°Г¤Г» ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гї Гў ГґГ Г©Г«
                     if (result == 2) {
                         stop++;
                         continue;
@@ -1401,7 +1401,7 @@ int maingame() {
             while (1) {
                 if (_kbhit()) {
                     int key = _getch();
-                    if (key == 0 || key == 224) { //Special keys / Спецклавиши
+                    if (key == 0 || key == 224) { //Special keys / Г‘ГЇГҐГ¶ГЄГ«Г ГўГЁГёГЁ
                         key = _getch();
                         switch (key) {
                         case ARROW_LEFT:
@@ -1421,12 +1421,12 @@ int maingame() {
                     else {
                         if (key == ENTER_BUTTON) {
                             if (EMselected == 0) {
-                                //Вернуться в меню
+                                //Г‚ГҐГ°Г­ГіГІГјГ±Гї Гў Г¬ГҐГ­Гѕ
                                 system("cls");
                                 break;
                             }
                             else if (EMselected == 1) {
-                                //Game continuation / Продолжить игру
+                                //Game continuation / ГЏГ°Г®Г¤Г®Г«Г¦ГЁГІГј ГЁГЈГ°Гі
                                 system("cls");
                                 stop = 0;
                                 return 2;
@@ -1453,7 +1453,7 @@ int setup_countgame() {
     int exit = 0;
     int kir = 0; 
     /* KIR = Keep It Running - used for signalazing that there is no need to execure mmugetcoursor / 
-       Keep It Running, нужна что бы сигнализировать что не нужно выполнять mmugetcoursor
+       Keep It Running, Г­ГіГ¦Г­Г  Г·ГІГ® ГЎГ» Г±ГЁГЈГ­Г Г«ГЁГ§ГЁГ°Г®ГўГ ГІГј Г·ГІГ® Г­ГҐ Г­ГіГ¦Г­Г® ГўГ»ГЇГ®Г«Г­ГїГІГј mmugetcoursor
     */
     while (exit != 1) {
         if (kir == 0) {
